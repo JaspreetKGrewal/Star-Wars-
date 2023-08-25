@@ -12,11 +12,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    font-size: small;
   }
   
   .pagination-button {
-    padding: 8px 12px;
+    padding: 8px 8px;
     margin: 0 5px;
     border: none;
     background-color: #007bff;
@@ -36,6 +38,6 @@
   
   .pagination-info {
     margin: 0 10px;
-    font-size: 14px;
+    font-size: 12px;
   }
   

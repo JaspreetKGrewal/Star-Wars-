@@ -1,0 +1,17 @@
+.breadcrumbs {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #999;
+  }
+
+  .breadcrumb-inactive {
+    color: #cccccc;
+  }
+  
+  .breadcrumb-active {
+    color: #000000;
+  }
+  
+  .separator {
+    margin: 0 5px;
+  }

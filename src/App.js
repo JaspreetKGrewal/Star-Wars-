@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import CharactersList from "./Components/CharactersList";
-import CharacterDetails from "./Components/CharacterDetails";
+import CharactersList from "./Components/CharactersList/CharactersList";
+import CharacterDetails from "./Components/CharacterDetails/CharacterDetails";
 import { BrowserRouter,Routes, Route } from "react-router-dom";
 import HomePage from "./Components/HomePage";
 

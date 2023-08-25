@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//Home page with button to navigate to Characters page
 export default function HomePage() {
  const navigateTo = useNavigate();
   return (
