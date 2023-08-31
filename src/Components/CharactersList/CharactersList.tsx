@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CharactersList.css";
 import "../Loader.css";
@@ -5,15 +6,26 @@ import { useEffect, useState } from "react";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { LiaGreaterThanSolid, LiaLessThanSolid } from "react-icons/lia";
 
+export interface CharacterDetail{
+  name: string;
+  gender: string;
+  height: string;
+  mass: string;
+  hair_color: string;
+  skin_color: string;
+  eye_color: string;
+  birth_year: string;
+  url?: string;
+}
+
 const CharactersList = () => {
   const [loading, setLoading] = useState(false);
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<CharacterDetail[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
   const navigateTo = useNavigate();
   const nextPageCondition = currentPage === totalPages;
-  let id = 1;
 
   useEffect(() => {
     fetchCharacters();
@@ -31,7 +43,7 @@ const CharactersList = () => {
       setTotalPages(Math.ceil(data.count / itemsPerPage));
       setLoading(false);
     } catch (error) {
-      alert("Failed to fetch Star Wars characters!", error.msg);
+      alert("Failed to fetch Star Wars characters!");
       setLoading(false);
     }
   };
@@ -70,8 +82,8 @@ const CharactersList = () => {
                 <ul
                   key={index}
                   onClick={() => {
-                    let getId = item.url.split("/");
-                    id = getId[getId.length - 2];
+                    let getId = (item.url||'').split("/");
+                    const id = getId[getId.length - 2];
                     navigateTo(`/characters/${id}`);
                   }}
                   className="list"

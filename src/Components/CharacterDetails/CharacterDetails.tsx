@@ -9,38 +9,49 @@ import {
 } from "../../api/apiRequest";
 import axios from "axios";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { CharacterDetail } from "../CharactersList/CharactersList";
 
 const CharacterDetails = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  const [character, setCharacter] = useState(null);
-  const [planet, setPlanet] = useState(null);
-  const [films, setFilms] = useState([]);
+  const [character, setCharacter] = useState<CharacterDetail>({
+    name: '',
+    gender: '',
+    height: '',
+    mass: '',
+    hair_color: '',
+    skin_color: '',
+    eye_color:'',
+    birth_year: ''
+  });
+  const [planet, setPlanet] = useState({
+    name: ''
+  });
+  const [films, setFilms] = useState<string[]>([]);
 
   //Fetch home planet
-  const fetchHomeworld = async (url) => {
+  const fetchHomeworld = async (url: string) => {
     try {
       const response = await getHomeworld(url);
       setPlanet(response.data);
     } catch (error) {
-      alert("Failed to get home planet", error.msg);
+      alert("Failed to get home planet");
     }
   };
 
   //Fetch films featuring for each character
-  const fetchFilms = async (urls) => {
+  const fetchFilms = async (urls: string[]) => {
     setLoading(true);
     const requests = await getAllFilms(urls);
     axios.all(requests).then((responses) => {
-      const filmTitles = responses.map((resp) => resp.data.title);
-      // const filmTitles = filmsTitle.toString();
+      const filmTitles: string[] = responses.map((resp) => resp.data.title);
       setFilms(filmTitles);
       setLoading(false);
     });
   };
 
   //Fetch Character's details
-  const fetchCharacterDetails = async (characterId) => {
+  const fetchCharacterDetails = async (characterId: string | undefined) => {
     setLoading(true);
     try {
       const response = await getCharacterDetails(characterId);
@@ -48,7 +59,7 @@ const CharacterDetails = () => {
       fetchHomeworld(response.data.homeworld);
       fetchFilms(response.data.films);
     } catch (error) {
-      alert("Failed to display character's details", error.msg);
+      alert("Failed to display character's details");
       setLoading(false);
     }
   };
