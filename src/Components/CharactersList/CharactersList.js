@@ -3,6 +3,7 @@ import "./CharactersList.css";
 import "../Loader.css";
 import { useEffect, useState } from "react";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { LiaGreaterThanSolid, LiaLessThanSolid } from "react-icons/lia";
 
 const CharactersList = () => {
   const [loading, setLoading] = useState(false);
@@ -11,6 +12,7 @@ const CharactersList = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
   const navigateTo = useNavigate();
+  const nextPageCondition = currentPage === totalPages;
   let id = 1;
 
   useEffect(() => {
@@ -36,8 +38,8 @@ const CharactersList = () => {
 
   // Setting Breadcrumbs
   const paths = [
-    { label: "Home", url: "/" },
-    { label: "Characters", url: "/characters" },
+    { label: "Home", url: "/", active: false },
+    { label: "Characters", url: "/characters", active: true },
   ];
 
   return (
@@ -48,51 +50,48 @@ const CharactersList = () => {
         </div>
       ) : (
         <header className="App-header">
-          <h2>Star War Characters</h2>
           <Breadcrumbs paths={paths} />
-          <section>
-            {characters.map((item, index) => (
-              <ul
-                key={index}
-                onClick={() => {
-                  let getId = item.url.split("/");
-                  id = getId[getId.length - 2];
-                  navigateTo(`/characters/${id}`);
-                }}
-                className="list"
-              >
-                <p>{item.name}</p>
-                <p>
-                  {item.gender} {item.height}
-                </p>
-              </ul>
-            ))}
-                <div>
-        <nav className="pagination">
-          <button
-            onClick={() => {
-              if (currentPage > 1) {
-                setCurrentPage(currentPage - 1);
-              }
-            }}
-          >
-            Previous
-          </button>
-          <span>
-            {" "}
-            {currentPage} / {totalPages}{" "}
-          </span>
-          <button
-            onClick={() => {
-              if (currentPage < totalPages) {
-                setCurrentPage(currentPage + 1);
-              }
-            }}
-          >
-            Next
-          </button>
-         </nav>
-        </div>
+          <h2>Star War Characters</h2>
+          <section className="section">
+            <LiaLessThanSolid
+              style={{
+                color: currentPage === 1 ? "#94b0e9" : "black",
+                fontSize: "40",
+                cursor: currentPage === 1 ? "not-allowed" : "pointer",
+              }}
+              onClick={() => {
+                if (currentPage > 1) {
+                  setCurrentPage(currentPage - 1);
+                }
+              }}
+            />
+            <div>
+              {characters.map((item, index) => (
+                <ul
+                  key={index}
+                  onClick={() => {
+                    let getId = item.url.split("/");
+                    id = getId[getId.length - 2];
+                    navigateTo(`/characters/${id}`);
+                  }}
+                  className="list"
+                >
+                  <li>{item.name}</li>
+                </ul>
+              ))}
+            </div>
+            <LiaGreaterThanSolid
+              style={{
+                color: nextPageCondition ? "#94b0e9" : "black",
+                fontSize: "40",
+                cursor: nextPageCondition ? "not-allowed" : "pointer",
+              }}
+              onClick={() => {
+                if (currentPage < totalPages) {
+                  setCurrentPage(currentPage + 1);
+                }
+              }}
+            />
           </section>
         </header>
       )}

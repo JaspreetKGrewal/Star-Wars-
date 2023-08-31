@@ -7,7 +7,7 @@ export const Breadcrumbs = ({ paths }) => {
     <div className="breadcrumbs">
       {paths.map((path, index) => (
         <span key={index}>
-          <Link to={path.url}>{path.label}</Link>
+          <Link to={path.url} className={path.active?"breadcrumb-active" : "breadcrumb-inactive"} style={{textDecoration: 'none'}}>{path.label}</Link>
           {index < paths.length - 1 && <span className="separator"> / </span>}
         </span>
       ))}

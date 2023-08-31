@@ -1,11 +1,12 @@
 .breadcrumbs {
-    margin: 10px 0;
+    margin: 20px;
     font-size: 18px;
     color: #999;
+    text-decoration: none !important;
   }
 
   .breadcrumb-inactive {
-    color: #cccccc;
+    color: #7a7272;
   }
   
   .breadcrumb-active {

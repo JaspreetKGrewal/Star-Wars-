@@ -29,10 +29,13 @@ const CharacterDetails = () => {
 
   //Fetch films featuring for each character
   const fetchFilms = async (urls) => {
+    setLoading(true);
     const requests = await getAllFilms(urls);
     axios.all(requests).then((responses) => {
       const filmTitles = responses.map((resp) => resp.data.title);
+      // const filmTitles = filmsTitle.toString();
       setFilms(filmTitles);
+      setLoading(false);
     });
   };
 
@@ -44,7 +47,6 @@ const CharacterDetails = () => {
       setCharacter(response.data);
       fetchHomeworld(response.data.homeworld);
       fetchFilms(response.data.films);
-      setLoading(false);
     } catch (error) {
       alert("Failed to display character's details", error.msg);
       setLoading(false);
@@ -57,9 +59,13 @@ const CharacterDetails = () => {
 
   // Setting Breadcrumbs
   const paths = [
-    { label: "Home", url: "/" },
-    { label: "Characters", url: "/characters" }, 
-    { label: character ? character.name : "Character Details", url: `/characters/${id}` }
+    { label: "Home", url: "/", active: false },
+    { label: "Characters", url: "/characters", active: false },
+    {
+      label: character ? character.name : "Character Details",
+      url: `/characters/${id}`,
+      active: true,
+    },
   ];
 
   return (
@@ -70,11 +76,13 @@ const CharacterDetails = () => {
         </div>
       ) : (
         character &&
-        planet && (
+        planet &&
+        films && (
           <div>
             <header className="App-header">
-              <h2>{character.name} Details</h2>
               <Breadcrumbs paths={paths} />
+              <h2>{character.name} Details</h2>
+
               <section className="list">
                 <ul>
                   <p>Gender: {character.gender}</p>
@@ -85,14 +93,7 @@ const CharacterDetails = () => {
                   <p>Eye Color: {character.eye_color}</p>
                   <p>Birth Year: {character.birth_year}</p>
                   <p>Planet: {planet.name}</p>
-                  <p>Films: </p>
-                  <ul>
-                    {films.map((filmTitle) => (
-                      <li style={{ listStyle: "none" }} key={filmTitle}>
-                        {filmTitle}
-                      </li>
-                    ))}
-                  </ul>
+                  <p>Films: {films.join(", ")} </p>
                 </ul>
               </section>
             </header>
