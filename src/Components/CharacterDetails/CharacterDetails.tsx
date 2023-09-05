@@ -43,7 +43,7 @@ const CharacterDetails = () => {
   const fetchFilms = async (urls: string[]) => {
     setLoading(true);
     const requests = await getAllFilms(urls);
-    axios.all(requests).then((responses) => {
+    axios.all(requests).then((responses: any[]) => {
       const filmTitles: string[] = responses.map((resp) => resp.data.title);
       setFilms(filmTitles);
       setLoading(false);
