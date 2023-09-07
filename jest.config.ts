@@ -14,6 +14,9 @@ const config: Config = {
     '\\.(css|scss)$': 'identity-obj-proxy',
 
   },
+  setupFilesAfterEnv: [
+    "<rootDir>/src/setupTests.ts"
+  ]
 };
 
 export default config;

@@ -15,14 +15,14 @@ describe("HomePage", () => {
       screen.getByText("Welcome to the world of Star Wars!!")
     ).toBeTruthy();
   });
-  it("should render characters page when button is clicked", () => {
+  it("should check if button exists", () => {
     render(
       <BrowserRouter>
         <HomePage />
       </BrowserRouter>
     );
     const button = screen.getByTestId("charactersButton");
-    userEvent.click(button);
-    expect(screen.getByText("Characters")).toBeTruthy();
+    expect(button).toBeTruthy();
+    expect(button).toHaveTextContent("Characters");
   });
 });

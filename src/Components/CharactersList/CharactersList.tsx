@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CharactersList.css";
@@ -6,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { LiaGreaterThanSolid, LiaLessThanSolid } from "react-icons/lia";
 
-export interface CharacterDetail{
+export interface CharacterDetail {
   name: string;
   gender: string;
   height: string;
@@ -29,7 +30,7 @@ const CharactersList = () => {
 
   useEffect(() => {
     fetchCharacters();
-  }, [currentPage]);
+  }, []);
 
   //Fetch all characters and display 10 per page
   const fetchCharacters = async () => {
@@ -82,7 +83,7 @@ const CharactersList = () => {
                 <ul
                   key={index}
                   onClick={() => {
-                    let getId = (item.url||'').split("/");
+                    let getId = (item.url || "").split("/");
                     const id = getId[getId.length - 2];
                     navigateTo(`/characters/${id}`);
                   }}
