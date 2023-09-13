@@ -6,6 +6,7 @@ import "../Loader.css";
 import { useEffect, useState } from "react";
 import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import { LiaGreaterThanSolid, LiaLessThanSolid } from "react-icons/lia";
+import { getCharacters } from "../../api/apiRequest";
 
 export interface CharacterDetail {
   name: string;
@@ -36,10 +37,9 @@ const CharactersList = () => {
   const fetchCharacters = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://swapi.dev/api/people/?page=${currentPage}`
-      );
-      const data = await response.json();
+      const response = await getCharacters(currentPage.toString());
+      const { data } = response;
+      console.log(response);
       setCharacters(data.results);
       setTotalPages(Math.ceil(data.count / itemsPerPage));
       setLoading(false);

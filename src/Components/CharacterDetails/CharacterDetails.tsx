@@ -15,17 +15,17 @@ const CharacterDetails = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [character, setCharacter] = useState<CharacterDetail>({
-    name: '',
-    gender: '',
-    height: '',
-    mass: '',
-    hair_color: '',
-    skin_color: '',
-    eye_color:'',
-    birth_year: ''
+    name: "",
+    gender: "",
+    height: "",
+    mass: "",
+    hair_color: "",
+    skin_color: "",
+    eye_color: "",
+    birth_year: "",
   });
   const [planet, setPlanet] = useState({
-    name: ''
+    name: "",
   });
   const [films, setFilms] = useState<string[]>([]);
 
@@ -82,7 +82,7 @@ const CharacterDetails = () => {
   return (
     <div>
       {loading ? (
-        <div className="loader-container">
+        <div data-testid="loading-spinner" className="loader-container">
           <div className="spinner"></div>
         </div>
       ) : (
