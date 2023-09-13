@@ -20,8 +20,6 @@ describe("Breadcrumbs", () => {
     expect(screen.getAllByText("/")).toBeTruthy();
     expect(screen.getByText("Characters")).toBeTruthy();
     expect(screen.getByText("Luke Skywalker")).toBeTruthy();
-    // eslint-disable-next-line testing-library/no-debugging-utils
-    screen.debug();
   });
 
   it("should render correct href", () => {

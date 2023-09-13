@@ -39,7 +39,6 @@ const CharactersList = () => {
     try {
       const response = await getCharacters(currentPage.toString());
       const { data } = response;
-      console.log(response);
       setCharacters(data.results);
       setTotalPages(Math.ceil(data.count / itemsPerPage));
       setLoading(false);

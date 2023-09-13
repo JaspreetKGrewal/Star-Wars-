@@ -42,7 +42,7 @@ const CharacterDetails = () => {
   //Fetch films featuring for each character
   const fetchFilms = async (urls: string[]) => {
     setLoading(true);
-    const requests = await getAllFilms(urls);
+    const requests = getAllFilms(urls);
     axios.all(requests).then((responses: any[]) => {
       const filmTitles: string[] = responses.map((resp) => resp.data.title);
       setFilms(filmTitles);
