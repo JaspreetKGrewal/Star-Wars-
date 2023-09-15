@@ -60,12 +60,12 @@ const CharacterDetails = () => {
       fetchFilms(response.data.films);
     } catch (error) {
       alert("Failed to display character's details");
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchCharacterDetails(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Setting Breadcrumbs

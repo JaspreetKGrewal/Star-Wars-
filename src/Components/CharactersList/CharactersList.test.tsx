@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import * as api from "../../api/apiRequest";
 import { MOCK_CHARACTERS } from "../../Mock/mockData";
 
+jest.spyOn(window, "alert").mockImplementation(() => {});
 jest.spyOn(api, "getCharacters").mockReturnValue(
   new Promise((resolve) => {
     resolve({
@@ -34,5 +35,20 @@ describe("Characters List", () => {
     );
     expect(await screen.findByText("Home")).toBeInTheDocument();
     expect(await screen.findByText("Characters")).toBeInTheDocument();
+  });
+
+  it("should show window alert when api request fails", async () => {
+    jest
+      .spyOn(api, "getCharacters")
+      .mockRejectedValue(new Error("Failed to fetch Star Wars characters!"));
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(() => {
+      render(
+        <BrowserRouter>
+          <CharactersList />
+        </BrowserRouter>
+      );
+    });
+    expect(await window.alert).toBeCalled();
   });
 });

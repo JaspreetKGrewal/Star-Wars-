@@ -11,7 +11,8 @@ import {
   MOCK_HOMEWORLD,
 } from "../../Mock/mockData";
 
-jest.spyOn(api, "getHomeworld").mockReturnValue(
+jest.spyOn(window, "alert").mockImplementation(() => {});
+jest.spyOn(api, "getHomeworld").mockResolvedValue(
   new Promise((resolve) => {
     resolve({
       data: MOCK_HOMEWORLD,
@@ -40,7 +41,7 @@ jest.spyOn(api, "getAllFilms").mockReturnValue([
     });
   }),
 ]);
-jest.spyOn(api, "getCharacterDetails").mockReturnValue(
+jest.spyOn(api, "getCharacterDetails").mockResolvedValue(
   new Promise((resolve) => {
     resolve({
       data: MOCK_CHARACTER_DETAILS,
@@ -70,7 +71,21 @@ describe("Character Details", () => {
         "Films: A New Hope, The Empire Strikes Back, A New Hope, The Empire Strikes Back"
       )
     ).toBeInTheDocument();
-
     window.alert = jsdomalert;
+  });
+
+  it("should show window alert when api request fails", async () => {
+    jest
+      .spyOn(api, "getCharacterDetails")
+      .mockRejectedValue(new Error("Failed to display character's details"));
+
+    act(() => {
+      render(
+        <BrowserRouter>
+          <CharacterDetails />
+        </BrowserRouter>
+      );
+    });
+    expect(await window.alert).toBeCalled();
   });
 });

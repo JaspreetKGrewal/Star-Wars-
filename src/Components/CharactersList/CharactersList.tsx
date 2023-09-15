@@ -31,7 +31,7 @@ const CharactersList = () => {
 
   useEffect(() => {
     fetchCharacters();
-  }, []);
+  }, [currentPage]);
 
   //Fetch all characters and display 10 per page
   const fetchCharacters = async () => {
@@ -44,7 +44,6 @@ const CharactersList = () => {
       setLoading(false);
     } catch (error) {
       alert("Failed to fetch Star Wars characters!");
-      setLoading(false);
     }
   };
 
