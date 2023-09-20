@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import HomePage from "./HomePage";
 import { BrowserRouter } from "react-router-dom";
+import { expect } from "@jest/globals";
 
 describe("HomePage", () => {
   it("renders the homepage with a welcome message", () => {

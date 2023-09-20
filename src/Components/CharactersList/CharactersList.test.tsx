@@ -4,6 +4,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import * as api from "../../api/apiRequest";
 import { MOCK_CHARACTERS } from "../../Mock/mockData";
+import { expect } from "@jest/globals";
 
 jest.spyOn(window, "alert").mockImplementation(() => {});
 jest.spyOn(api, "getCharacters").mockReturnValue(

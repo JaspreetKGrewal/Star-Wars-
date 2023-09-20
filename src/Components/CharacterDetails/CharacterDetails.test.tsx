@@ -10,6 +10,7 @@ import {
   MOCK_FILMS,
   MOCK_HOMEWORLD,
 } from "../../Mock/mockData";
+import { expect } from "@jest/globals";
 
 jest.spyOn(window, "alert").mockImplementation(() => {});
 jest.spyOn(api, "getHomeworld").mockResolvedValue(

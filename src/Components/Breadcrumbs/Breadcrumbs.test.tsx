@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { BrowserRouter } from "react-router-dom";
+import { expect } from "@jest/globals";
 
 const mockPaths = [
   { label: "Home", url: "/", active: false },
