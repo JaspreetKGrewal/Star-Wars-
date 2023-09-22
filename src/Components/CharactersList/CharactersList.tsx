@@ -65,6 +65,7 @@ const CharactersList = () => {
           <h2>Star War Characters</h2>
           <section className="section">
             <LiaLessThanSolid
+              data-testid="previousPageButton"
               style={{
                 color: currentPage === 1 ? "#94b0e9" : "black",
                 fontSize: "40",
@@ -92,6 +93,7 @@ const CharactersList = () => {
               ))}
             </div>
             <LiaGreaterThanSolid
+              data-testid="nextPageButton"
               style={{
                 color: nextPageCondition ? "#94b0e9" : "black",
                 fontSize: "40",
