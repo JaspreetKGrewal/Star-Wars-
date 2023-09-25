@@ -16,16 +16,12 @@ describe("The Characters List page", () => {
       statusCode: 200,
       fixture: "characterDetails.json",
     }).as("getCharacterDetails");
+  });
 
-    cy.intercept("GET", "https://swapi.dev/api/planets/*/", {
-      statusCode: 200,
-      fixture: "characterDetails.json",
-    }).as("getPlanet");
-
-    cy.intercept("GET", "https://swapi.dev/api/films/*/", {
-      statusCode: 200,
-      fixture: "characterDetails.json",
-    }).as("getFilms");
+  it("breadcrumbs should navigate to Home page", () => {
+    cy.wait("@getCharacters");
+    cy.get(".breadcrumb-inactive").click();
+    cy.location("pathname").should("eq", "/");
   });
 
   it("displays the title for the page", () => {
@@ -51,5 +47,14 @@ describe("The Characters List page", () => {
     cy.wait("@getCharacters");
     cy.get(".list").first().click();
     cy.location("pathname").should("eq", "/characters/1");
+  });
+
+  it("displays correct breadcrumbs", () => {
+    cy.wait("@getCharacters");
+    cy.get(".breadcrumb-inactive").should("exist").should("have.text", "Home");
+    cy.get(".separator").should("exist").should("have.text", " / ");
+    cy.get(".breadcrumb-active")
+      .should("exist")
+      .should("have.text", "Characters");
   });
 });
