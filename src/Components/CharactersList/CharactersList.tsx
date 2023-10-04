@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import "./CharactersList.css";
 import "../Loader.css";
 import { useEffect, useState } from "react";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { Breadcrumbs } from "../Breadcrumbs";
 import { LiaGreaterThanSolid, LiaLessThanSolid } from "react-icons/lia";
-import { getCharacters } from "../../api/apiRequest";
+import { getCharacters } from "../../api";
 
-export interface CharacterDetail {
+export default interface CharacterDetail {
   name: string;
   gender: string;
   height: string;
@@ -20,7 +20,7 @@ export interface CharacterDetail {
   url?: string;
 }
 
-const CharactersList = () => {
+export const CharactersList = () => {
   const [loading, setLoading] = useState(false);
   const [characters, setCharacters] = useState<CharacterDetail[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -111,5 +111,3 @@ const CharactersList = () => {
     </div>
   );
 };
-
-export default CharactersList;

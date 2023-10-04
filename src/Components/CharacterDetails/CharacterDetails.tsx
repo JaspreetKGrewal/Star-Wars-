@@ -2,16 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../Loader.css";
 import "./CharacterDetails.css";
-import {
-  getAllFilms,
-  getCharacterDetails,
-  getHomeworld,
-} from "../../api/apiRequest";
+import { getAllFilms, getCharacterDetails, getHomeworld } from "../../api";
 import axios from "axios";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
-import { CharacterDetail } from "../CharactersList/CharactersList";
+import { Breadcrumbs } from "../Breadcrumbs";
+import CharacterDetail from "../CharactersList/CharactersList";
 
-const CharacterDetails = () => {
+export const CharacterDetails = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [character, setCharacter] = useState<CharacterDetail>({
@@ -115,5 +111,3 @@ const CharacterDetails = () => {
     </div>
   );
 };
-
-export default CharacterDetails;

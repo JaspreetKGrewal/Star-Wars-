@@ -3,13 +3,9 @@
 import { act, render, screen } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import CharacterDetails from "./CharacterDetails";
-import * as api from "../../api/apiRequest";
-import {
-  MOCK_CHARACTER_DETAILS,
-  MOCK_FILMS,
-  MOCK_HOMEWORLD,
-} from "../../Mock/mockData";
+import { CharacterDetails } from "./CharacterDetails";
+import * as api from "../../api";
+import { MOCK_CHARACTER_DETAILS, MOCK_FILMS, MOCK_HOMEWORLD } from "../../mock";
 import { expect } from "@jest/globals";
 
 jest.spyOn(window, "alert").mockImplementation(() => {});
