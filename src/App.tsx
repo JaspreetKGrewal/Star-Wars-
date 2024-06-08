@@ -1,9 +1,9 @@
 import React from "react";
-import "./app.css";
-import { CharactersList } from "./components/CharactersList";
-import { CharacterDetails } from "./components/CharacterDetails";
+import "./App.css";
+import { CharactersList } from "./Components/CharactersList";
+import { CharacterDetails } from "./Components/CharacterDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
+import HomePage from "./Components/HomePage";
 
 function App() {
   return (

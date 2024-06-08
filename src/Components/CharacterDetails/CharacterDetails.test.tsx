@@ -5,7 +5,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { CharacterDetails } from "./CharacterDetails";
 import * as api from "../../api";
-import { MOCK_CHARACTER_DETAILS, MOCK_FILMS, MOCK_HOMEWORLD } from "../../mock";
+import { MOCK_CHARACTER_DETAILS, MOCK_FILMS, MOCK_HOMEWORLD } from "../../Mock";
 import { expect } from "@jest/globals";
 
 jest.spyOn(window, "alert").mockImplementation(() => {});

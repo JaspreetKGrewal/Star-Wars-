@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAllFilms, getCharacterDetails, getCharacters, getHomeworld } from "./apiRequest";
-import { MOCK_CHARACTERS, MOCK_CHARACTER_DETAILS, MOCK_FILMS, MOCK_HOMEWORLD } from "../mock";
+import { MOCK_CHARACTERS, MOCK_CHARACTER_DETAILS, MOCK_FILMS, MOCK_HOMEWORLD } from "../Mock";
 import { expect } from '@jest/globals'
 
 jest.mock('axios');
